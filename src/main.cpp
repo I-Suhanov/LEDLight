@@ -15,6 +15,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   FastLED.addLeds< WS2812, LED_PIN, GRB>(leds, LED_COUNT);
   FastLED.setBrightness(100);
+  FastLED.showColor(HUE_RED);
   // put your setup code here, to run once:
 }
 
