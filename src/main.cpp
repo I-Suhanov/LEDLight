@@ -23,6 +23,30 @@ void setup() {
   // put your setup code here, to run once:
 }
 
+void activeMode(){
+  FastLED.setBrightness(100 * bright);
+  if(millis() - myTimer1 >= 20000){
+    for (int i = 0; i < LED_COUNT; i++) {
+    leds[i].setHue(counter + i * 255 / LED_COUNT);
+    myTimer1 = millis();
+    counter++;        // counter меняется от 0 до 255 (тип данных byte)
+    FastLED.show();
+    }
+  }
+}
+
+void waitingMode(){
+  FastLED.setBrightness(30 * bright);
+  if(millis() - myTimer2 >= 20000){
+    for (int i = 0; i < LED_COUNT; i++) {
+    leds[i].setHue(counter + i * 255 / LED_COUNT);
+    }
+    FastLED.show();
+    counter++;
+    myTimer2 = millis();
+  }
+}
+
 void loop() {
 int pirVal = digitalRead(PIN_MOVE_SENSOR);
  
@@ -44,26 +68,4 @@ int pirVal = digitalRead(PIN_MOVE_SENSOR);
   }
 
   // put your main code here, to run repeatedly:
-}
-
-void activeMode(){
-  FastLED.setBrightness(100 * bright);
-  if(millis() - myTimer1 >= 500){
-    for (int i = 0; i < LED_COUNT; i++) {
-    leds[i].setHue(counter + i * 255 / LED_COUNT);
-    }
-  counter++;        // counter меняется от 0 до 255 (тип данных byte)
-  FastLED.show();
-  }
-}
-
-void waitingMode(){
-  FastLED.setBrightness(30 * bright);
-  if(millis() - myTimer2 >= 500){
-    for (int i = 0; i < LED_COUNT; i++) {
-    leds[i].setHue(counter + i * 255 / LED_COUNT);
-    }
-    FastLED.show();
-    counter++;
-  }
 }
